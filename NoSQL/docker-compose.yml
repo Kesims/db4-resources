@@ -1,0 +1,62 @@
+#
+#   This is a complete docker-compose file containing all NoSQL databases for Delta NoSQL database course.
+#   In case you can not for whatever reason run docker directly on your machine (thanks Microsoft,
+#   WSL2 + VirtualBox support is... great...), you can download a lightweight Debian VirtualBox system
+#   image that has those databases already set up.
+#
+#
+#   WARNING! This docker-compose file is subject to change as it has not been tested in class yet and therefore
+#   current configuration might not comply with all the requirments for the NoSQL course.
+#
+
+services:
+    redis:
+    # Redis-cli access: `docker exec -it db4_redis redis-cli`
+        image: redis
+        container_name: db4_redis
+        restart: unless-stopped
+        # Command that sets the conatiner up to:
+        # - Every 20 seconds check if there is something to save. If yes, save it.
+        # - Enables loging
+        # - Sets the redis password to `kaktusdelta`
+        command: redis-server --save 20 1 --loglevel warning --requirepass kaktusdelta
+        ports:
+            - 6379:6379
+        volumes: 
+          - ./data/redis:/data
+          
+    cassandra:
+        image: cassandra
+        container_name: db4_cassandra
+        restart: unless-stopped
+        ports:
+            - 9042:9042
+        volumes:
+            - ./data/cassandra:/var/lib/cassandra
+
+           
+    neo4j:
+        image: neo4j
+        container_name: db4_neo4j
+        restart: unless-stopped
+        environment:
+           NEO4J_ACCEPT_LICENSE_AGREEMENT: yes
+           NEO4J_EDITION: docker_compose
+           # Default admin username has to be `neo4j`, that is why I have not used `user`
+           NEO4J_AUTH: neo4j/kaktusdelta
+        ports:
+           - 7474:7474
+           - 7687:7687
+        volumes:
+           - ./data/neo4j:/var/lib/neo4j/data
+      
+    mongodb:
+    # Shell access: `docker exec -it db4_mongodb bash`
+        image: mongo
+        container_name: db4_mongodb
+        restart: unless-stopped
+        environment:
+           MONGO_INITDB_ROOT_USERNAME: user
+           MONGO_INITDB_ROOT_PASSWORD: kaktusdelta
+        ports:
+           - 27017:27017
