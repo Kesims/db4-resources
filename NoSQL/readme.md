@@ -6,7 +6,7 @@ This folder contains resources for the NoSQL course.
 If you have Docker installed on your machine, the only thing you need is to download the `docker-compose.yml` file and run `docker-compose up -d` in the same folder as the file. This will download and start all the necessary containers.
 
 ### B) with Docker installed in a prepared Debian VM
-1) Download the VM image from the following link: http://downloads.jetbrainer.com/db4.ova
+1) Download the VM image from the following link: https://downloads.jetbrainer.com/db4.ova
 2) Import the VM image into VirtualBox
 3) Adjust the VM resources to your liking. The minimum requirements are 512MB of RAM and one vCPU, but for optimal performance it is recommended to use 2 vCPUs and 2GB of RAM.
 4) Start the VM, you should then be able to access the databases on their default ports on the VM IP address
