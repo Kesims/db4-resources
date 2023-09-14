@@ -7,7 +7,6 @@
 #
 #   WARNING! This docker-compose file is subject to change as it has not been tested in class yet and therefore
 #   current configuration might not comply with all the requirments for the NoSQL course.
-#
 
 services:
     redis:
@@ -18,8 +17,8 @@ services:
         # Command that sets the conatiner up to:
         # - Every 20 seconds check if there is something to save. If yes, save it.
         # - Enables loging
-        # - Sets the redis password to `kaktusdelta`
-        command: redis-server --save 20 1 --loglevel warning --requirepass kaktusdelta
+        # - Optionally can set the redis password to `kaktusdelta` using `--requirepass kaktusdelta`
+        command: redis-server --save 20 1 --loglevel warning
         ports:
             - 6379:6379
         volumes: 
