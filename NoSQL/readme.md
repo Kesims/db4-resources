@@ -3,7 +3,7 @@ This folder contains resources for the NoSQL course.
 
 ## Setup
 ### A) with Docker installed locally
-If you have Docker installed on your machine, the only thing you need is to download the `docker-compose.yml` file and run `docker-compose up -d` in the same folder as the file. This will download and start all the necessary containers.
+If you have Docker installed on your machine, the only thing you need is to do is to download the `docker-compose.yml` file and run `docker-compose up -d` in the same folder as the file. This will download and start all the necessary containers.
 
 ### B) with Docker installed in a prepared Debian VM
 1) Download the VM image from the following link: https://downloads.jetbrainer.com/db4.ova
@@ -25,6 +25,9 @@ Following databases are available:
 ### Redis
 - Port: `6379`
 - No login required by default
+
+You can start the redis-cli by running the `./redis-cli.sh` script.
+If you are using the VM version 1 and lower, you can start the redis-cli by logging in and running `sudo docker exec -it db4_redis redis-cli`.
 
 ### Cassandra
 - Port: `9042`
