@@ -11,9 +11,11 @@ If you have Docker installed on your machine, the only thing you need is to do i
 3) Adjust the VM resources to your liking. The minimum requirements are 512MB of RAM and one vCPU, but for optimal performance it is recommended to use 2 vCPUs and 2GB of RAM.
 4) Start the VM, you should then be able to access the databases on their default ports on the VM IP address
 
-**In case you need to access or modify the VM**
+**In case you need to access or modify the VM or log into it**
 - Username: `user`
 - Password: `kaktusdelta`
+
+The VM has 2 network cards, one uses NAT to access the internet, another one is host-only and can be used to ssh into the machine. Usually the IP should be `192.168.56.1xx`.
 
 Internally the VirtualMachine uses docker to host the databases, so you can use the same commands inside as if you had docker installed locally.
 You can find the docker-compose.yml for the databases in the `/db4` folder.
@@ -27,6 +29,7 @@ Following databases are available:
 - No login required by default
 
 You can start the redis-cli by running the `./redis-cli.sh` script.
+
 If you are using the VM version 1 and lower, you can start the redis-cli by logging in and running `sudo docker exec -it db4_redis redis-cli`.
 
 ### Cassandra
