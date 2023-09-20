@@ -10,7 +10,7 @@
 
 services:
     redis:
-    # Redis-cli access: `docker exec -it db4_redis redis-cli`
+        # Redis-cli access: `docker exec -it db4_redis redis-cli`
         image: redis
         container_name: db4_redis
         restart: unless-stopped
@@ -21,9 +21,10 @@ services:
         command: redis-server --save 20 1 --loglevel warning
         ports:
             - 6379:6379
-        volumes: 
-          - ./data/redis:/data
-          
+        volumes:
+            - ./data/redis:/data
+
+
     cassandra:
         image: cassandra
         container_name: db4_cassandra
@@ -33,29 +34,32 @@ services:
         volumes:
             - ./data/cassandra:/var/lib/cassandra
 
-           
+
     neo4j:
         image: neo4j
         container_name: db4_neo4j
         restart: unless-stopped
         environment:
-           NEO4J_ACCEPT_LICENSE_AGREEMENT: yes
-           NEO4J_EDITION: docker_compose
-           # Default admin username has to be `neo4j`, that is why I have not used `user`
-           NEO4J_AUTH: neo4j/kaktusdelta
+            NEO4J_ACCEPT_LICENSE_AGREEMENT: yes
+            NEO4J_EDITION: docker_compose
+            # Default admin username has to be `neo4j`, that is why I have not used `user`
+            NEO4J_AUTH: neo4j/kaktusdelta
         ports:
-           - 7474:7474
-           - 7687:7687
+            - 7474:7474
+            - 7687:7687
         volumes:
-           - ./data/neo4j:/var/lib/neo4j/data
-      
-    mongodb:
-    # Shell access: `docker exec -it db4_mongodb bash`
+            - ./data/neo4j:/var/lib/neo4j/data
+
+
+    mongo:
+        # Shell access: `docker exec -it db4_mongodb bash`
         image: mongo
         container_name: db4_mongodb
         restart: unless-stopped
         environment:
-           MONGO_INITDB_ROOT_USERNAME: user
-           MONGO_INITDB_ROOT_PASSWORD: kaktusdelta
+            MONGO_INITDB_ROOT_USERNAME: user
+            MONGO_INITDB_ROOT_PASSWORD: kaktusdelta
         ports:
-           - 27017:27017
+            - 27017:27017
+        volumes:
+            - ./data/mongo:/data/db
