@@ -1,0 +1,14 @@
+services:
+  oracle:
+    image: gvenzl/oracle-xe
+    container_name: db4_oracle
+    restart: unless-stopped
+    environment:
+        ORACLE_PASSWORD: kaktusdelta
+        APP_USER: db4
+        APP_USER_PASSWORD: kaktusdelta
+        ORACLE_DATABASE: db4
+    ports:
+      - 1521:1521
+    volumes:
+      - ./data/oracle:/u01/app/oracle/oradata
