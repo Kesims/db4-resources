@@ -1,6 +1,6 @@
 services:
   oracle:
-    image: gvenzl/oracle-xe
+    image: gvenzl/oracle-xe:full
     container_name: db4_oracle
     restart: unless-stopped
     environment:
